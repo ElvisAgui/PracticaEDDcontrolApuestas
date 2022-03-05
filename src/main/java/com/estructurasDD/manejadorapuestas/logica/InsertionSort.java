@@ -12,7 +12,7 @@ public class InsertionSort {
         for (int i = 0; i < apuestas.length; i++) {
             posAux = i;
             aux = apuestas[i];
-            while ((posAux > 0) && (apuestas[posAux - 1].getPuntaje() > aux.getCantidadApostada())) {
+            while ((posAux > 0) && (apuestas[posAux - 1].getPuntaje() < aux.getCantidadApostada())) {
                 apuestas[posAux] = apuestas[posAux - 1];
                 posAux--;
             }

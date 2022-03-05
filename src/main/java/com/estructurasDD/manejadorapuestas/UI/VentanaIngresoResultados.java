@@ -1,7 +1,9 @@
-
 package com.estructurasDD.manejadorapuestas.UI;
 
 import com.estructurasDD.manejadorapuestas.logica.Apuesta;
+import com.estructurasDD.manejadorapuestas.logica.InsertionSort;
+import com.estructurasDD.manejadorapuestas.logica.Resultado;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -10,6 +12,9 @@ import com.estructurasDD.manejadorapuestas.logica.Apuesta;
 public class VentanaIngresoResultados extends javax.swing.JFrame {
 
     private Apuesta[] apuestas;
+    private Resultado result;
+    private InsertionSort ordenamiento = new InsertionSort();
+
     public VentanaIngresoResultados(Apuesta[] apuestas) {
         this.apuestas = apuestas;
         initComponents();
@@ -53,8 +58,8 @@ public class VentanaIngresoResultados extends javax.swing.JFrame {
         CalcularResultados = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jLabel15 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        ordenPuntaje = new javax.swing.JButton();
+        ordenarNombre = new javax.swing.JButton();
         jLabel14 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -313,12 +318,17 @@ public class VentanaIngresoResultados extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jButton1.setText("Puntaje");
-
-        jButton2.setText("Nombre");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        ordenPuntaje.setText("Puntaje");
+        ordenPuntaje.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                ordenPuntajeActionPerformed(evt);
+            }
+        });
+
+        ordenarNombre.setText("Nombre");
+        ordenarNombre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ordenarNombreActionPerformed(evt);
             }
         });
 
@@ -398,9 +408,9 @@ public class VentanaIngresoResultados extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(32, 32, 32)
-                                .addComponent(jButton1)
+                                .addComponent(ordenPuntaje)
                                 .addGap(38, 38, 38)
-                                .addComponent(jButton2))
+                                .addComponent(ordenarNombre))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(21, 21, 21)
                                 .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -428,8 +438,8 @@ public class VentanaIngresoResultados extends javax.swing.JFrame {
                         .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton2)
-                            .addComponent(jButton1)))
+                            .addComponent(ordenarNombre)
+                            .addComponent(ordenPuntaje)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
@@ -450,9 +460,15 @@ public class VentanaIngresoResultados extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void ordenarNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ordenarNombreActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+        if (result != null) {
+            apuestas = this.ordenamiento.ordenarPorNombre(apuestas);
+            result.reporteTabla(apuestas, jTable1);
+        } else {
+            JOptionPane.showMessageDialog(this, "Debe Ingresar los resultados de la Carrera y presionar el botton de calculo de resultados ");
+        }
+    }//GEN-LAST:event_ordenarNombreActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
@@ -460,18 +476,47 @@ public class VentanaIngresoResultados extends javax.swing.JFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
+        VentanaPrincipal vtnPrincipal = new VentanaPrincipal();
+        vtnPrincipal.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void CalcularResultadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CalcularResultadosActionPerformed
         // TODO add your handling code here:
+        result = new Resultado();
+        if (apuestas != null) {
+            apuestas = result.calcularPuntaje(this.odenEntrada(), apuestas);
+            JOptionPane.showMessageDialog(this, "Calculo de Resultados Exitoso");
+        }else{
+            System.out.println("ssss");
+        }
+
+
     }//GEN-LAST:event_CalcularResultadosActionPerformed
 
-    
+    private void ordenPuntajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ordenPuntajeActionPerformed
+        // TODO add your handling code here:
+        if (result != null) {
+            apuestas = this.ordenamiento.ordenarPorPuntaje(apuestas);
+            result.reporteTabla(apuestas, jTable1);
+        } else {
+            JOptionPane.showMessageDialog(this, "Debe Ingresar los resultados de la Carrera y presionar el botton de calculo de resultados ");
+        }
+
+    }//GEN-LAST:event_ordenPuntajeActionPerformed
+
+    private int[] odenEntrada() {
+        int[] ordenEntrada = {Integer.parseInt(lugar1.getSelectedItem().toString()), Integer.parseInt(lugar2.getSelectedItem().toString()),
+            Integer.parseInt(lugar3.getSelectedItem().toString()), Integer.parseInt(lugar4.getSelectedItem().toString()), Integer.parseInt(lugar5.getSelectedItem().toString()),
+             Integer.parseInt(lugar6.getSelectedItem().toString()), Integer.parseInt(lugar7.getSelectedItem().toString()), Integer.parseInt(lugar8.getSelectedItem().toString()),
+            Integer.parseInt(lugar9.getSelectedItem().toString()), Integer.parseInt(lugar10.getSelectedItem().toString())};
+        
+        return ordenEntrada;
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton CalcularResultados;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
@@ -506,5 +551,7 @@ public class VentanaIngresoResultados extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> lugar7;
     private javax.swing.JComboBox<String> lugar8;
     private javax.swing.JComboBox<String> lugar9;
+    private javax.swing.JButton ordenPuntaje;
+    private javax.swing.JButton ordenarNombre;
     // End of variables declaration//GEN-END:variables
 }
