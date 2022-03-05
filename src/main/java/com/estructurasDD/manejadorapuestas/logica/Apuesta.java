@@ -7,7 +7,7 @@ package com.estructurasDD.manejadorapuestas.logica;
  */
 public class Apuesta {
     private double cantidadApostada;
-    int [] ordenLlegada;
+    private int [] ordenLlegada;
     private String Apostador;
     private int puntaje;
     
@@ -57,13 +57,6 @@ public class Apuesta {
     @Override
     public String toString() {
         return "Apuesta{" + "cantidadApostada=" + cantidadApostada + ", ordenLlegada=" + ordenLlegada + ", Apostador=" + Apostador + ", puntaje=" + puntaje + '}'+"\n";
-    }
-    
-    public void res(){
-        for (int i = 0; i < ordenLlegada.length; i++) {
-            System.out.println(ordenLlegada[i]);
-            
-        }
     }
    
 }

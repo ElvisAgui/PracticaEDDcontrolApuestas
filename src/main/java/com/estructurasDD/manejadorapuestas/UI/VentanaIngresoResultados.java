@@ -3,6 +3,7 @@ package com.estructurasDD.manejadorapuestas.UI;
 import com.estructurasDD.manejadorapuestas.logica.Apuesta;
 import com.estructurasDD.manejadorapuestas.logica.InsertionSort;
 import com.estructurasDD.manejadorapuestas.logica.Resultado;
+import com.estructurasDD.manejadorapuestas.reportes.Reporte;
 import javax.swing.JOptionPane;
 
 /**
@@ -14,9 +15,11 @@ public class VentanaIngresoResultados extends javax.swing.JFrame {
     private Apuesta[] apuestas;
     private Resultado result;
     private InsertionSort ordenamiento = new InsertionSort();
+    private Reporte reporte;
 
-    public VentanaIngresoResultados(Apuesta[] apuestas) {
+    public VentanaIngresoResultados(Apuesta[] apuestas, Reporte reporte) {
         this.apuestas = apuestas;
+        this.reporte = reporte;
         initComponents();
     }
 
@@ -64,10 +67,11 @@ public class VentanaIngresoResultados extends javax.swing.JFrame {
         jPanel5 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jButton3 = new javax.swing.JButton();
+        reporteJbutton = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setExtendedState(6);
 
         jPanel1.setBackground(new java.awt.Color(51, 153, 255));
 
@@ -305,10 +309,10 @@ public class VentanaIngresoResultados extends javax.swing.JFrame {
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addContainerGap(34, Short.MAX_VALUE)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(27, 27, 27)
                 .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(31, 31, 31))
+                .addContainerGap(38, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -374,10 +378,10 @@ public class VentanaIngresoResultados extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jButton3.setText("Reportes");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        reporteJbutton.setText("Reportes");
+        reporteJbutton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                reporteJbuttonActionPerformed(evt);
             }
         });
 
@@ -398,26 +402,27 @@ public class VentanaIngresoResultados extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(38, 38, 38)
-                        .addComponent(jButton3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(reporteJbutton)
+                        .addGap(41, 41, 41)
                         .addComponent(jButton4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(90, 90, 90)
                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(184, 184, 184))
+                        .addGap(0, 193, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(32, 32, 32)
-                                .addComponent(ordenPuntaje)
-                                .addGap(38, 38, 38)
-                                .addComponent(ordenarNombre))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(21, 21, 21)
-                                .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(20, 20, 20)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(6, 6, 6)
+                                        .addComponent(ordenPuntaje)
+                                        .addGap(35, 35, 35)
+                                        .addComponent(ordenarNombre))
+                                    .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())))
+                        .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -428,22 +433,22 @@ public class VentanaIngresoResultados extends javax.swing.JFrame {
                         .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jButton3)
+                        .addComponent(reporteJbutton)
                         .addComponent(jButton4)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(ordenarNombre)
-                            .addComponent(ordenPuntaje)))
+                            .addComponent(ordenPuntaje)
+                            .addComponent(ordenarNombre))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addContainerGap(29, Short.MAX_VALUE))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -464,15 +469,17 @@ public class VentanaIngresoResultados extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (result != null) {
             apuestas = this.ordenamiento.ordenarPorNombre(apuestas);
+            reporte.setTimpoPormedioOrdenamientoN(this.ordenamiento.getTiempoPromedioOrdenamientoNombre());
             result.reporteTabla(apuestas, jTable1);
         } else {
             JOptionPane.showMessageDialog(this, "Debe Ingresar los resultados de la Carrera y presionar el botton de calculo de resultados ");
         }
     }//GEN-LAST:event_ordenarNombreActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void reporteJbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reporteJbuttonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+        this.reporte.reporteTabla(jTable1);
+    }//GEN-LAST:event_reporteJbuttonActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
@@ -486,9 +493,10 @@ public class VentanaIngresoResultados extends javax.swing.JFrame {
         result = new Resultado();
         if (apuestas != null) {
             apuestas = result.calcularPuntaje(this.odenEntrada(), apuestas);
+            reporte.setTimpoPormedioCalculoResultados(result.getTiempoPromedioResutados());
             JOptionPane.showMessageDialog(this, "Calculo de Resultados Exitoso");
         }else{
-            System.out.println("ssss");
+            JOptionPane.showMessageDialog(this, "calcular resultado apuestas nullas");
         }
 
 
@@ -498,6 +506,7 @@ public class VentanaIngresoResultados extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (result != null) {
             apuestas = this.ordenamiento.ordenarPorPuntaje(apuestas);
+            reporte.setTimpoPormedioOrdenamientoP(this.ordenamiento.getTiempoPromedioOrdenamientoPuntaje());
             result.reporteTabla(apuestas, jTable1);
         } else {
             JOptionPane.showMessageDialog(this, "Debe Ingresar los resultados de la Carrera y presionar el botton de calculo de resultados ");
@@ -517,7 +526,6 @@ public class VentanaIngresoResultados extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton CalcularResultados;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -553,5 +561,6 @@ public class VentanaIngresoResultados extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> lugar9;
     private javax.swing.JButton ordenPuntaje;
     private javax.swing.JButton ordenarNombre;
+    private javax.swing.JButton reporteJbutton;
     // End of variables declaration//GEN-END:variables
 }

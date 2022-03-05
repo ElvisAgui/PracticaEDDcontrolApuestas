@@ -5,6 +5,7 @@ import com.estructurasDD.manejadorapuestas.archivos.LecturaArchivo;
 import com.estructurasDD.manejadorapuestas.logica.Apuesta;
 import com.estructurasDD.manejadorapuestas.logica.ControlIngreso;
 import com.estructurasDD.manejadorapuestas.logica.VerificadorApuesta;
+import com.estructurasDD.manejadorapuestas.reportes.Reporte;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.io.File;
@@ -27,6 +28,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private ControlIngreso ingreso = new ControlIngreso();
     private VerificadorApuesta verificador = new VerificadorApuesta();
     private EscritorArchivos escritor = new EscritorArchivos();
+    private Reporte reporte = new Reporte();
 
     public VentanaPrincipal() {
         initComponents();
@@ -571,9 +573,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         // Verificacion de apuestas
         if (apuestas != null) {
             this.apuestas = this.verificador.verficadorApuestas(apuestas);
+            this.reporte.setTimpoPormedioVerificacion(this.verificador.getTiempoPromedioVerificacion());
             this.apuestas = this.verificador.limpiarApuestas(apuestas);
             this.escritor.guardar(verificador.getRechazadas());
-            vtnResultados = new VentanaIngresoResultados(this.apuestas);
+            vtnResultados = new VentanaIngresoResultados(this.apuestas, reporte);
             vtnResultados.setVisible(true);
             this.dispose();
         } else {
@@ -599,6 +602,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             try {
                 Apuesta apuesta = new Apuesta(Double.parseDouble(monto.getText()), juntarPosiciones(), apostador.getText());
                 ingreso.ingresarApuesta(apuesta, apuestas);
+                JOptionPane.showMessageDialog(this, "agregado con exito");
             } catch (NumberFormatException e) {
                 JOptionPane.showMessageDialog(this, "Datos Incorrectos");
             }
