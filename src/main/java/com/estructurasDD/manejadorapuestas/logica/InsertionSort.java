@@ -10,15 +10,18 @@ public class InsertionSort {
     private long tiempoEjecucionNombre = 0;
     private long tiempoPromedioOrdenamientoNombre = 0;
     private long tiempoPromedioOrdenamientoPuntaje = 0;
-    
-    
+    private int tamañoArreglo = 0;
+
     /**
-     * algoritmo para ordenamiento por puntaje O(n^2) metodo de insersion, Puntajes
+     * algoritmo para ordenamiento por puntaje O(n^2) metodo de insersion,
+     * Puntajes
+     *
      * @param apuestas
-     * @return 
+     * @return
      */
     public Apuesta[] ordenarPorPuntaje(Apuesta[] apuestas) {            //O(n^2)
         this.inicializarTiempos();
+        this.tamañoArreglo = apuestas.length;
         Apuesta aux;
         int posAux;
         for (int i = 0; i < apuestas.length; i++) {                                 //O(n)
@@ -36,14 +39,16 @@ public class InsertionSort {
         return apuestas;
     }
 
-    
     /**
-     * algoritmo para ordenamiento por puntaje O(n^2) metodo de insersion, NOmbre
+     * algoritmo para ordenamiento por puntaje O(n^2) metodo de insersion,
+     * NOmbre
+     *
      * @param apuestas
-     * @return 
+     * @return
      */
     public Apuesta[] ordenarPorNombre(Apuesta[] apuestas) {
         this.inicializarTiempos();
+        this.tamañoArreglo = apuestas.length;
         Apuesta aux;
         int posAux;
         for (int i = 0; i < apuestas.length; i++) {
@@ -61,9 +66,10 @@ public class InsertionSort {
 
         return apuestas;
     }
-    
+
     /**
-     * inicializa el tiempo por si se llegara usar mas de una ves el tiempo no se aumente con el anterior
+     * inicializa el tiempo por si se llegara usar mas de una ves el tiempo no
+     * se aumente con el anterior
      */
     private void inicializarTiempos() {
         this.tiempoEjecucionNombre = 0;
@@ -78,6 +84,10 @@ public class InsertionSort {
 
     public long getTiempoPromedioOrdenamientoPuntaje() {
         return tiempoPromedioOrdenamientoPuntaje;
+    }
+
+    public int getTamañoArreglo() {
+        return tamañoArreglo;
     }
 
 }

@@ -18,9 +18,9 @@ public class VerificadorApuesta {
      * @return apuestas verificadas
      */
     public Apuesta[] verficadorApuestas(Apuesta[] apuestas) {
-        long tiempoInicial = System.nanoTime();
         this.tamaño = apuestas.length;
         for (int i = 0; i < apuestas.length; i++) {                                 //O(n)                                          //O(1)
+            long tiempoInicial = System.nanoTime();
             int[] posTem = new int[10];                                             //O(1)
             for (int j = 0; j < 10; j++) {                                          //O(1) ya que no depende de n
                 if (!posCorrecta(apuestas[i].getOrdenLlegada()[j], posTem)) {       //O(1)

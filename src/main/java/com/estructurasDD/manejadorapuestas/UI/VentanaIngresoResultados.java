@@ -470,6 +470,7 @@ public class VentanaIngresoResultados extends javax.swing.JFrame {
         if (result != null) {
             apuestas = this.ordenamiento.ordenarPorNombre(apuestas);
             reporte.setTimpoPormedioOrdenamientoN(this.ordenamiento.getTiempoPromedioOrdenamientoNombre());
+            reporte.setLength(ordenamiento.getTamañoArreglo());
             result.reporteTabla(apuestas, jTable1);
         } else {
             JOptionPane.showMessageDialog(this, "Debe Ingresar los resultados de la Carrera y presionar el botton de calculo de resultados ");
@@ -495,7 +496,7 @@ public class VentanaIngresoResultados extends javax.swing.JFrame {
             apuestas = result.calcularPuntaje(this.odenEntrada(), apuestas);
             reporte.setTimpoPormedioCalculoResultados(result.getTiempoPromedioResutados());
             JOptionPane.showMessageDialog(this, "Calculo de Resultados Exitoso");
-        }else{
+        } else {
             JOptionPane.showMessageDialog(this, "calcular resultado apuestas nullas");
         }
 
@@ -507,6 +508,7 @@ public class VentanaIngresoResultados extends javax.swing.JFrame {
         if (result != null) {
             apuestas = this.ordenamiento.ordenarPorPuntaje(apuestas);
             reporte.setTimpoPormedioOrdenamientoP(this.ordenamiento.getTiempoPromedioOrdenamientoPuntaje());
+            reporte.setLength(ordenamiento.getTamañoArreglo());
             result.reporteTabla(apuestas, jTable1);
         } else {
             JOptionPane.showMessageDialog(this, "Debe Ingresar los resultados de la Carrera y presionar el botton de calculo de resultados ");
@@ -517,9 +519,9 @@ public class VentanaIngresoResultados extends javax.swing.JFrame {
     private int[] odenEntrada() {
         int[] ordenEntrada = {Integer.parseInt(lugar1.getSelectedItem().toString()), Integer.parseInt(lugar2.getSelectedItem().toString()),
             Integer.parseInt(lugar3.getSelectedItem().toString()), Integer.parseInt(lugar4.getSelectedItem().toString()), Integer.parseInt(lugar5.getSelectedItem().toString()),
-             Integer.parseInt(lugar6.getSelectedItem().toString()), Integer.parseInt(lugar7.getSelectedItem().toString()), Integer.parseInt(lugar8.getSelectedItem().toString()),
+            Integer.parseInt(lugar6.getSelectedItem().toString()), Integer.parseInt(lugar7.getSelectedItem().toString()), Integer.parseInt(lugar8.getSelectedItem().toString()),
             Integer.parseInt(lugar9.getSelectedItem().toString()), Integer.parseInt(lugar10.getSelectedItem().toString())};
-        
+
         return ordenEntrada;
     }
 
